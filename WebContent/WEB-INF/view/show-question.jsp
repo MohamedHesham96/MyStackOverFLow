@@ -16,7 +16,7 @@
 </head>
 <body>
 
-<%@ include file = "header.jsp" %>
+	<%@ include file="header.jsp"%>
 
 	<br>
 	<br>
@@ -42,7 +42,7 @@
 			</div>
 		</div>
 
-		<div class="d-inline-block ">
+		<div class="d-inline-block">
 
 			<div class="">
 
@@ -50,6 +50,7 @@
 				<h6 class="d-inline-block">${question.views}times</h6>
 
 			</div>
+
 			<div class="">
 
 				<h6 class="text-muted d-inline-block">Answers</h6>
@@ -70,22 +71,53 @@
 	<br>
 
 	<c:forEach var="tempAnswer" items="${answers}">
-		<div class=" container  card w-75 ">
+		
+		<c:url var="increasRate" value="/user/increaserate">
+			<c:param name="answerId" value="${tempAnswer.id}"></c:param>
+			<c:param name="rateState" value="increase"></c:param>
+		</c:url>
 
-			<div class="card-body bg-light">
-				<h4 class="card-title text-primary	mb-1">${tempAnswer.user.username}</h4>
+		<c:url var="decreaseRate" value="/user/decreaserate">
+			<c:param name="answerId" value="${tempAnswer.id}"></c:param>
+			<c:param name="rateState" value="decrease"></c:param>
+		</c:url>
 
-				<h6 class="mt-2 ml-3 card-text text-success">${tempAnswer.content}</h6>
+		<div>
+
+			<div class="d-inline-block ml-5">
+
+				<c:url value="/resources/images" var="images" />
+
+				<a href="${increasRate}"> 
+					<img class="d-block" src="${images}/arrow-up.png"></img>
+				</a>
+
+				<h3 class="ml-4 text-success">${tempAnswer.rate}</h3>
+
+				<a href="${decreaseRate}">
+					<img class="d-block" src="${images}/arrow-down.png" />
+				</a>
+			</div>
+
+			<div class="d-inline-block container w-75 ml-4">
+
+				<div class="container card">
+
+					<div class="d-inline-block card-body bg-light">
+						<h4 class="card-title text-primary	mb-1">${tempAnswer.user.username}</h4>
+
+						<h6 class="mt-2 ml-3 card-text text-success">${tempAnswer.content}</h6>
+					</div>
+
+				</div>
+
 			</div>
 
 		</div>
 
-		<br>
-
 	</c:forEach>
 
 	<br>
-
 
 	<div class="container w-75">
 		<h5>Your Answer</h5>

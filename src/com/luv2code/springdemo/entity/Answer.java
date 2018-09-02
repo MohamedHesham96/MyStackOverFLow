@@ -22,6 +22,9 @@ public class Answer {
 
 	@Column(name = "content")
 	private String content;
+
+	@Column(name = "rate")
+	private String rate;
 	
 	@Column(name = "create_time")
 	private String createTime;
@@ -74,6 +77,16 @@ public class Answer {
 
 	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
+	}
+
+	public String getRate() {
+		return rate;
+	}
+
+	public void setRate(String rate) {
+		this.rate = rate;
 	}	
+	
+	
 
 }
